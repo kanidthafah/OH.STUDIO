@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { MdArrowOutward } from 'react-icons/md';
 import { motion } from 'framer-motion';
-import { slideInFromBottom } from '@/utils/motion';
 import { HiOutlineLockClosed } from 'react-icons/hi2';
 
 interface ImagesType {
@@ -79,17 +78,31 @@ const Content: React.FC = () => {
       <div className="w-full grid grid-cols-2 grid-rows-auto gap-x-4 max-[808px]:grid-cols-1">
         {images.map((image, index) => (
           <motion.div
-            variants={slideInFromBottom(0.7)}
+            variants={{
+              hidden: {
+                y: 40,
+                opacity: 0,
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+              },
+            }}
+            transition={{ delay: 0.7, duration: 0.7 }}
             key={image.id}
             className="aspect-[2/1.5] mt-9 relative bg-transparent max-[808px]:mt-7"
           >
             <div className="absolute top-0 w-full h-full opacity-0 rounded-xl max-[808px]:hidden hover:opacity-100 backdrop-blur-md transition-all duration-300 cursor-pointer group">
               <div className="absolute flex flex-col top-4 left-2 translate-x-[20px]">
-                <p className="text-primary">{captions[index].name}</p>
-                <p className="text-font1">{captions[index].sub}</p>
+                <p className="text-primary drop-shadow-smdrop-shadow-sm">
+                  {captions[index].name}
+                </p>
+                <p className="text-font1 drop-shadow-sm">
+                  {captions[index].sub}
+                </p>
               </div>
               <button
-                className={`${icons[index].text} ${icons[index].bg} absolute p-4 rounded-full text-md right-10 translate-y-[40px] group-hover:translate-y-[20px] group-hover:right-6 transition-all duration-300 delay-100 ease-in-out`}
+                className={`${icons[index].text} ${icons[index].bg} absolute p-4 rounded-full text-md drop-shadow-sm right-10 translate-y-[40px] group-hover:translate-y-[20px] group-hover:right-6 transition-all duration-300 delay-100 ease-in-out`}
               >
                 {icons[index].icon}
               </button>

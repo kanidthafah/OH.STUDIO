@@ -1,5 +1,4 @@
 import React from 'react';
-import { slideInFromBottom } from '@/utils/motion';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
@@ -18,7 +17,17 @@ const Header = ({ title }: Prop): React.ReactNode => {
     >
       <div className="flex flex-col items-center gap-4 w-[36rem] max-[808px]:w-[95%] min-[1200px]:w-[70%]">
         <motion.div
-          variants={slideInFromBottom(0.6)}
+          variants={{
+            hidden: {
+              y: 40,
+              opacity: 0,
+            },
+            visible: {
+              y: 0,
+              opacity: 1,
+            },
+          }}
+          transition={{ delay: 0.6, duration: 0.7 }}
           className="flex justify-center items-center"
         >
           <h1 className="text-5xl tracking-tight font-medium text-center text-pretty max-[808px]:text-4xl min-[1200px]:text-7xl">
@@ -27,7 +36,17 @@ const Header = ({ title }: Prop): React.ReactNode => {
         </motion.div>
 
         <motion.div
-          variants={slideInFromBottom(0.7)}
+          variants={{
+            hidden: {
+              y: 40,
+              opacity: 0,
+            },
+            visible: {
+              y: 0,
+              opacity: 1,
+            },
+          }}
+          transition={{ delay: 0.7, duration: 0.7 }}
           className={`${pathname !== '/' ? 'hidden' : 'flex '} mt-8 justify-center items-center gap-2 text-sm text-font2 max-[808px]:hidden`}
         >
           <a
@@ -48,7 +67,17 @@ const Header = ({ title }: Prop): React.ReactNode => {
         </motion.div>
 
         <motion.div
-          variants={slideInFromBottom(0.7)}
+          variants={{
+            hidden: {
+              y: 40,
+              opacity: 0,
+            },
+            visible: {
+              y: 0,
+              opacity: 1,
+            },
+          }}
+          transition={{ delay: 0.7, duration: 0.7 }}
           className={`${pathname !== '/contact' ? 'hidden' : 'flex'}`}
         >
           <a
